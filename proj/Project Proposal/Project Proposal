@@ -4,5 +4,5 @@ Optimally assign N agents to N tasks in centralized assignment scheme using a Ma
 Motivating scenario:
 Amazon drone delivery optimization.
 
-If there exists N distributions facilities each with only one drone (for this example) that can fulfil N orders, we want to have each
-distribution facility decide on which order to fulfil while minimizing the distance traveled by each drone. 
+If there exists N distributions facilities each with only one drone (for this example) that can fulfill N orders, we want to have each
+distribution facility decide on which order to fulfill while minimizing the distance traveled by each drone. 
