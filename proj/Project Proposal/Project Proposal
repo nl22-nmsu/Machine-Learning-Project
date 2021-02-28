@@ -1,2 +1,8 @@
-Task Allocation:
-Optimally assign N agents to N tasks in centralized assignment scheme.
+Problem Definition: Task Allocation
+Optimally assign N agents to N tasks in centralized assignment scheme using a Machine Learning algorithm.
+
+Motivating scenario:
+Amazon drone delivery optimization.
+
+If there exists N distributions facilities each with only one drone (for this example) that can fulfil N orders, we want to have each
+distribution facility decide on which order to fulfil while minimizing the distance traveled by each drone. 
