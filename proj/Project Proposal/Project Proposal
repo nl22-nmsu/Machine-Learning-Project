@@ -1,8 +1,8 @@
-Problem Definition: Task Allocation
-Optimally assign N agents to N tasks in centralized assignment scheme using a Machine Learning algorithm.
+Problem Definition: Wind estimation using KNN algorithm
 
-Motivating scenario:
-Amazon drone delivery optimization.
+Motivation: Vertical Take Off and Landing UAS wind estimation is very difficult due to the propellers causing a down-wash effect. 
+Air-speed sensors are also very inaccurate and add unecessary weight to the UAS. If a learning algorithm is able to observe the UAS 
+motion and the controller input values, a prediction of the air-speed can be made and used to better stabalize the UAS. 
 
-If there exists N distributions facilities each with only one drone (for this example) that can fulfill N orders, we want to have each
-distribution facility decide on which order to fulfill while minimizing the distance traveled by each drone. 
+Approach: We will use a KNN algorithm to predict the airspeed by determining an optimal k value. By averaging the values of the k neighbors 
+of a new data point together, the wind speed can be predicted.
