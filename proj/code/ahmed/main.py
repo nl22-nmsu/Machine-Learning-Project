@@ -11,21 +11,24 @@ import LoadData
 import splitData
 import knnRegressor
 import addNoise
+import createFeatures
 
+print("Loading data...")
 X,y = LoadData.LoadData()
-
-print("beginning data split")
+X = createFeatures.createFeatures(X)
 X_train, X_test, y_train, y_test = splitData.testSplit(X, y, 0.3)
-print("splitting complete")
+
 #I suspect x,y,z should be bigger than roll, pitch, yaw in general: We need to characterize these
 #Zeros means no noise is added
 scaleFactor = [0, 0, 0, 0.4, 0.5, 0.6] #Change accordingly for x,y,z,roll,pitch,yaw
 X_test_noisy = addNoise.addNoise(X_test, scaleFactor)
-print(X_test.iloc[0:4,:])
-print(X_test_noisy.iloc[0:4,:])
+# print(X_test.iloc[0:4,:])
+# print(X_test_noisy.iloc[0:4,:])
+
 
 print('beginning fitting')
 numOfNeighbors = 1
-knnAcc = knnRegressor.knnRegressor(X_train, X_test, y_train, y_test, numOfNeighbors)
+knnAcc, error_rate = knnRegressor.knnRegressor(X_train, X_test, y_train, y_test, numOfNeighbors) #Calling funciton in knnRegressor
 print('beginning scorring')
-print("Accuracy of knn regression algorithm:",knnAcc)
+print("Accuracy of knn regression algorithm: %0.3f"%(knnAcc*100))
+#print("Error rate: ",error_rate)

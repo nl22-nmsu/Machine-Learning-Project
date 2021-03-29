@@ -16,6 +16,6 @@ def addNoise(X, scaleFactor):
         else:
             print("Error: Scale vector should be same length as number of columns in X")
             break
-    print(noise[0:4,:])
+    #print(noise[0:4,:])
     X_new = X + noise
     return X_new
