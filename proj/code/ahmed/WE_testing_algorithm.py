@@ -19,8 +19,8 @@ start = time.time()
 
 print("loading data...")
 X, y = LoadData.LoadData()
-print(X)
-print(y)
+# print(X)
+# print(y)
 print("loaded data")
 
 # Collecting the attributes individually for analysis
@@ -54,27 +54,29 @@ dyaw = X.iloc[:, 5]
 
 
 
+# ======================= IMPORTANT ================================
+# This is not how the paper averages the values, needs to be revised
+#===================================================================
 
-#Calculating all the means of the dataset
-avg_x = statistics.mean(x_position)
-avg_y = statistics.mean(y_position)
-avg_z = statistics.mean(z_position)
-avg_roll = statistics.mean(abs(droll))
-avg_pitch = statistics.mean(abs(dpitch))
-avg_yaw = statistics.mean(abs(dyaw))
+# #Calculating all the means of the dataset
+# avg_x = statistics.mean(x_position)
+# avg_y = statistics.mean(y_position)
+# avg_z = statistics.mean(z_position)
+# avg_roll = statistics.mean(abs(droll))
+# avg_pitch = statistics.mean(abs(dpitch))
+# avg_yaw = statistics.mean(abs(dyaw))
 
-#Calculating variances for the attributes
-vari_x = statistics.variance(x_position)
-vari_y = statistics.variance(y_position)
-vari_z = statistics.variance(z_position)
-vari_roll = statistics.mean(abs(droll))
-vari_pitch = statistics.mean(abs(dpitch))
-vari_yaw = statistics.mean(abs(dyaw))
+# #Calculating variances for the attributes
+# vari_x = statistics.variance(x_position)
+# vari_y = statistics.variance(y_position)
+# vari_z = statistics.variance(z_position)
+# vari_roll = statistics.mean(abs(droll))
+# vari_pitch = statistics.mean(abs(dpitch))
+# vari_yaw = statistics.mean(abs(dyaw))
 
+#print("x average:", avg_x)
 
-
-
-
+#=====================================================================
 
 
 
@@ -90,8 +92,8 @@ Xtest_std = sc.transform(X_test)
 
 error_rate = []
 
-knn = KNeighborsRegressor(n_neighbors=2, p=1, metric='minkowski')
-knn.fit(Xtrain_std, y_train)
+knn = KNeighborsRegressor(n_neighbors=2)#, p=1, metric='minkowski')
+knn.fit(X_train, y_train) #Was Standardized data being fed in
 y_pred = knn.predict(Xtest_std)
 error_rate.append(np.mean(y_pred != y_test))
 print(y_pred)
