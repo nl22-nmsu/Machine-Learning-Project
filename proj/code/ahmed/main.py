@@ -12,6 +12,12 @@ import splitData
 import knnRegressor
 import addNoise
 import createFeatures
+import argparse
+
+parser = argparse.ArgumentParser(description='Takes in number of neighbors')
+
+parser.add_argument('-n','--number')
+arg = parser.parse_args()
 
 print("Loading data...")
 X,y = LoadData.LoadData()
@@ -27,7 +33,7 @@ X_test_noisy = addNoise.addNoise(X_test, scaleFactor)
 
 
 print('beginning fitting')
-numOfNeighbors = 1
+numOfNeighbors = int(arg.number)
 knnAcc, error_rate = knnRegressor.knnRegressor(X_train, X_test_noisy, y_train, y_test, numOfNeighbors) #Calling funciton in knnRegressor
 print('beginning scorring')
 print("Accuracy of knn regression algorithm: %0.3f"%(knnAcc*100))
