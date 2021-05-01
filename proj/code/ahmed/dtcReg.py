@@ -2,12 +2,16 @@
 """
 Created on Wed Apr  7 16:08:42 2021
 
-@author: Natha
+@author: Nathan
 """
 from sklearn.tree import DecisionTreeRegressor as DTC
+import time
 
-def dtcReg(X_train,X_test,y_train,y_test):
-    dtcRegressor = DTC()
+def dtcReg(X_train,X_test,y_train,y_test, maxDep):
+    dtcRegressor = DTC(max_depth= maxDep)
+    ts = time.time()
     dtcRegressor.fit(X_train, y_train)
     acc = dtcRegressor.score(X_train, y_train)
-    return acc
+    te = time.time()
+    tTot = te-ts
+    return acc, tTot

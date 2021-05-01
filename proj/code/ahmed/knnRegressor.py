@@ -6,13 +6,17 @@ Created on Fri Mar 19 12:31:14 2021
 """
 from sklearn.neighbors import KNeighborsRegressor
 import numpy as np
+import time 
 
 def knnRegressor(X_train, X_test, y_train, y_test, num):
     error_rate = []
     knnr = KNeighborsRegressor(n_neighbors= num)
+    ts = time.time()
     knnr.fit(X_train, y_train)
     r_squared = knnr.score(X_test,y_test)
     y_pred = knnr.predict(X_test)
     error_rate.append(np.mean(y_pred != y_test))
+    te = time.time()
+    tTot = te-ts
     
-    return r_squared, error_rate
+    return r_squared, error_rate, tTot
