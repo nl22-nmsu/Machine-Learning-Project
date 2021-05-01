@@ -4,35 +4,22 @@ Created on Fri Mar 19 10:31:54 2021
 
 @author: Nathan
 """
-# import numpy as np
-# import pandas as pd
 import LoadData
 import splitData
 import knnRegressor
 import dtcReg
 import svmReg
 import addNoise
-import createFeatures
-# import argparse
-
 import matplotlib.pyplot as plt
-
-# parser = argparse.ArgumentParser(description='Takes in number of neighbors')
-
-# parser.add_argument('-n','--number')
-# arg = parser.parse_args()
 
 print("Loading data...")
 X,y = LoadData.LoadData()
-X = createFeatures.createFeatures(X)
 X_train, X_test, y_train, y_test = splitData.testSplit(X, y, 0.3)
 
 #I suspect x,y,z should be bigger than roll, pitch, yaw in general: We need to characterize these
 #Zeros means no noise is added
 scaleFactor = [0, 0, 0, 0, 0, 0] #Change accordingly for x,y,z,roll,pitch,yaw
 X_test_noisy = addNoise.addNoise(X_test, scaleFactor)
-# print(X_test.iloc[0:4,:])
-# print(X_test_noisy.iloc[0:4,:])
 
 knnAccs = []
 error_rates = []
@@ -40,7 +27,7 @@ timesKNN = []
 maxN = 6 #N+1 
 print('beginning fitting')
 for i in range(1,maxN):
-    numOfNeighbors = i#int(arg.number)
+    numOfNeighbors = i
     knnAcc, error_rate, timeKNN = knnRegressor.knnRegressor(X_train, X_test_noisy, y_train, y_test, numOfNeighbors) #Calling funciton in knnRegressor
     knnAccs.append((knnAcc)*100)
     error_rates.append(error_rate)
@@ -61,7 +48,6 @@ print("Accuracy of knn regression algorithm: %0.3f ===> Run time: %0.6f seconds"
 print("Accuracy of decision tree regression algorithm: %0.3f ===> Run time: %0.6f seconds"%(dtregAcc*100, timeDTR))
 print("Accuracy of support vector machine regression algorithm: %0.3f ===> Run time: %0.6f seconds"%(svmAcc*100, timeSVM))
 
-#print("Error rate: ",error_rate)
 fig, (ax1, ax2) = plt.subplots(1, 2)
 fig.suptitle('Effects of Numbers of Neighbors Used on KNN')
 ax1.plot(range(1,maxN), knnAccs)
