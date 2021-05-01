@@ -1,0 +1,2 @@
+1. load/run param.m
+2. open quadrotorsim.mdl and click the play/run button to start the simulation
