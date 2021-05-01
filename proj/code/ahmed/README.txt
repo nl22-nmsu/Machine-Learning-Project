@@ -1,6 +1,7 @@
-Ensure "WindSpeed_data.xls" is in same folder as main.py
+Ensure "WindSpeed_data.xls" is in same folder as main.py and other supporting files
 
-To run code (for one neighbor):
-python main.py -n 1
+To run code:
+python main.py
 
-change "1" to however many neighbors are sufficient: 1 provides 95% accuracy in our experience
+This code will run all three algorithms (knn, svm, dtr) and will output the results of all
+three algorithms for easy comparison. 
